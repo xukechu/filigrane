@@ -460,13 +460,41 @@ function applyWatermark() {
     downloadBtn.addEventListener('click', function() {
         if (!originalImage) return;
 
-        // Create a temporary link element
-        const link = document.createElement('a');
-        link.download = getTranslation('downloadFilename');
-        link.href = canvas.toDataURL('image/png');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Get the image data URL
+        const dataURL = canvas.toDataURL('image/png');
+
+        // Check if it's a mobile device
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // For mobile devices: open image in a new tab
+            // This allows the user to save it using the browser's built-in functionality
+            const newTab = window.open();
+            if (newTab) {
+                newTab.document.write('<html><head><title>' + getTranslation('downloadFilename') + '</title></head><body style="margin:0;display:flex;justify-content:center;align-items:center;background-color:#f0f0f0;">');
+                newTab.document.write('<img src="' + dataURL + '" alt="Watermarked Image" style="max-width:100%;max-height:100vh;">');
+                newTab.document.write('<div style="position:fixed;top:10px;left:0;right:0;text-align:center;font-family:Arial;color:#333;padding:10px;background-color:rgba(255,255,255,0.8);">' + getTranslation('saveImageInstructions') + '</div>');
+                newTab.document.write('</body></html>');
+                newTab.document.close();
+            } else {
+                // If popup is blocked, fallback to the desktop method
+                const link = document.createElement('a');
+                link.download = getTranslation('downloadFilename');
+                link.href = dataURL;
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        } else {
+            // For desktop: use the standard download method
+            const link = document.createElement('a');
+            link.download = getTranslation('downloadFilename');
+            link.href = dataURL;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     });
 
     // Initialize drag and drop functionality for file upload
