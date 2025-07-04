@@ -30,7 +30,9 @@ function updateCanvasText() {
         ctx.fillText(getTranslation('uploadPrompt'), canvas.width / 2, canvas.height / 2);
     } else {
         // If an image is loaded, redraw the watermark with the new language
-        applyWatermark();
+        if (typeof applyWatermark === 'function') {
+            applyWatermark();
+        }
     }
 }
 
