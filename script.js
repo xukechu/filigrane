@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const textColor = document.getElementById('textColor');
     const rotation = document.getElementById('rotation');
     const downloadBtn = document.getElementById('downloadBtn');
+    const reuploadBtn = document.getElementById('reuploadBtn');
     const xOffsetValue = document.getElementById('xOffsetValue');
     const yOffsetValue = document.getElementById('yOffsetValue');
     const fontSizeValue = document.getElementById('fontSizeValue');
@@ -53,12 +54,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     drawImage();
                     applyWatermark();
                     downloadBtn.disabled = false;
+                    reuploadBtn.style.display = 'block'; // Show re-upload button
                 };
                 img.src = event.target.result;
             };
 
             reader.readAsDataURL(e.target.files[0]);
         }
+    });
+
+    // Re-upload button click handler
+    reuploadBtn.addEventListener('click', function() {
+        imageInput.click(); // Trigger the file input
     });
 
     // Reset canvas to fit the image
@@ -227,6 +234,85 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(link);
     });
 
+    // Initialize drag and drop functionality
+    initDragAndDrop();
+
     // Initialize the canvas
     initCanvas();
+
+    // Initialize drag and drop functionality
+    function initDragAndDrop() {
+        const uploadSection = document.querySelector('.upload-section');
+        const canvasContainer = document.querySelector('.canvas-container');
+
+        // Make upload section clickable
+        uploadSection.addEventListener('click', function() {
+            imageInput.click();
+        });
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadSection.addEventListener(eventName, preventDefaults, false);
+            canvasContainer.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        // Highlight drop area when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadSection.addEventListener(eventName, highlight, false);
+            canvasContainer.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadSection.addEventListener(eventName, unhighlight, false);
+            canvasContainer.addEventListener(eventName, unhighlight, false);
+        });
+
+        // Handle dropped files
+        uploadSection.addEventListener('drop', handleDrop, false);
+        canvasContainer.addEventListener('drop', handleDrop, false);
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight(e) {
+            this.classList.add('highlight');
+        }
+
+        function unhighlight(e) {
+            this.classList.remove('highlight');
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            if (files && files.length) {
+                handleFiles(files);
+            }
+        }
+
+        function handleFiles(files) {
+            if (files[0].type.match('image.*')) {
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.onload = function() {
+                        originalImage = img;
+                        resetCanvas();
+                        drawImage();
+                        applyWatermark();
+                        downloadBtn.disabled = false;
+                        reuploadBtn.style.display = 'block';
+                    };
+                    img.src = event.target.result;
+                };
+
+                reader.readAsDataURL(files[0]);
+            }
+        }
+    }
 });

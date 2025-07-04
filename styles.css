@@ -31,10 +31,35 @@ h1 {
     border: 2px dashed #ccc;
     border-radius: 8px;
     margin-bottom: 20px;
+    transition: all 0.3s ease;
 }
 
-.upload-section input {
-    margin-bottom: 10px;
+.upload-section.highlight {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.upload-section {
+    cursor: pointer;
+}
+
+.upload-icon {
+    margin-bottom: 15px;
+    color: #999;
+}
+
+.upload-section p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.file-input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
 }
 
 .editor-container {
@@ -54,6 +79,13 @@ h1 {
     align-items: center;
     background-color: #f9f9f9;
     min-height: 300px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.canvas-container.highlight {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
 }
 
 canvas {
@@ -148,11 +180,43 @@ label {
     cursor: not-allowed;
 }
 
+.canvas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.canvas-container:hover .canvas-overlay {
+    opacity: 1;
+}
+
+.reupload-btn {
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.reupload-btn:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
 @media (max-width: 768px) {
     .editor-container {
         flex-direction: column;
     }
-    
+
     .canvas-container, .controls {
         width: 100%;
     }

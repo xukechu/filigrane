@@ -6,8 +6,8 @@ const translations = {
     'en': {
         'pageTitle': 'Image Watermark Tool',
         'mainHeading': 'Image Watermark Tool',
-        'selectImage': 'Select an image to add a watermark',
-        'uploadPrompt': 'Upload an image to add watermark',
+        'selectImage': 'Select an image or drag & drop here',
+        'uploadPrompt': 'Click to upload or drag an image here',
         'watermarkText': 'Watermark Text',
         'position': 'Position',
         'appearance': 'Appearance',
@@ -29,6 +29,7 @@ const translations = {
         'pixelUnit': 'px',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': 'Re-upload',
         'dir': 'ltr' // text direction: ltr (left to right) or rtl (right to left)
     },
     // French
@@ -58,6 +59,7 @@ const translations = {
         'pixelUnit': 'px',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': 'Re-télécharger',
         'dir': 'ltr'
     },
     // German
@@ -87,6 +89,7 @@ const translations = {
         'pixelUnit': 'px',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': 'Neu hochladen',
         'dir': 'ltr'
     },
     // Italian
@@ -116,6 +119,7 @@ const translations = {
         'pixelUnit': 'px',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': 'Ricarica',
         'dir': 'ltr'
     },
     // Spanish
@@ -145,6 +149,7 @@ const translations = {
         'pixelUnit': 'px',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': 'Volver a subir',
         'dir': 'ltr'
     },
     // Japanese
@@ -174,6 +179,7 @@ const translations = {
         'pixelUnit': 'px',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': '再アップロード',
         'dir': 'ltr'
     },
     // Russian
@@ -203,6 +209,7 @@ const translations = {
         'pixelUnit': 'пкс',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': 'Перезагрузить',
         'dir': 'ltr'
     },
     // Arabic
@@ -232,14 +239,15 @@ const translations = {
         'pixelUnit': 'بكسل',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': 'إعادة التحميل',
         'dir': 'rtl' // Right to left for Arabic
     },
     // Simplified Chinese
     'zh-CN': {
         'pageTitle': '图片水印工具',
         'mainHeading': '图片水印工具',
-        'selectImage': '选择一张图片添加水印',
-        'uploadPrompt': '上传图片添加水印',
+        'selectImage': '选择图片或拖放至此',
+        'uploadPrompt': '点击上传或拖放图片至此',
         'watermarkText': '水印文本',
         'position': '位置',
         'appearance': '外观',
@@ -261,6 +269,7 @@ const translations = {
         'pixelUnit': '像素',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': '重新上传',
         'dir': 'ltr'
     },
     // Traditional Chinese
@@ -290,6 +299,7 @@ const translations = {
         'pixelUnit': '像素',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': '重新上傳',
         'dir': 'ltr'
     },
     // Korean
@@ -319,6 +329,7 @@ const translations = {
         'pixelUnit': '픽셀',
         'percentUnit': '%',
         'degreeUnit': '°',
+        'reuploadBtn': '다시 업로드',
         'dir': 'ltr'
     }
 };
@@ -434,6 +445,9 @@ function applyTranslations() {
 
     // Update download button
     document.getElementById('downloadBtn').innerText = langData.downloadBtn;
+
+    // Update re-upload button
+    document.getElementById('reuploadText').innerText = langData.reuploadBtn;
 
     // Update unit suffixes for font size, opacity, and rotation
     const fontSize = document.getElementById('fontSize');
