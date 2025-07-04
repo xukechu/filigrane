@@ -37,6 +37,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': 'Re-upload',
         'gestureHint': 'Tip: You can drag, pinch to zoom, and rotate the watermark directly on the image.',
+        'touchGestureHint': 'Drag to move, pinch to resize, rotate with two fingers. Double-tap to re-upload.',
+        'mouseGestureHint': 'Drag to move watermark. Hover to see re-upload option.',
         'dir': 'ltr' // text direction: ltr (left to right) or rtl (right to left)
     },
     // French
@@ -74,6 +76,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': 'Re-télécharger',
         'gestureHint': 'Astuce: Vous pouvez faire glisser, pincer pour zoomer et faire pivoter le filigrane directement sur l\'image.',
+        'touchGestureHint': 'Faites glisser pour déplacer, pincez pour redimensionner, tournez avec deux doigts. Double-tapez pour re-télécharger.',
+        'mouseGestureHint': 'Faites glisser pour déplacer le filigrane. Survolez pour voir l\'option de re-téléchargement.',
         'dir': 'ltr'
     },
     // German
@@ -111,6 +115,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': 'Neu hochladen',
         'gestureHint': 'Tipp: Sie können das Wasserzeichen direkt auf dem Bild ziehen, zum Zoomen zusammendrücken und drehen.',
+        'touchGestureHint': 'Ziehen zum Verschieben, Zusammendrücken zum Vergrößern/Verkleinern, mit zwei Fingern drehen. Doppeltippen zum Neu-Hochladen.',
+        'mouseGestureHint': 'Ziehen Sie, um das Wasserzeichen zu verschieben. Bewegen Sie den Mauszeiger darüber, um die Option zum Neu-Hochladen zu sehen.',
         'dir': 'ltr'
     },
     // Italian
@@ -148,6 +154,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': 'Ricarica',
         'gestureHint': 'Suggerimento: Puoi trascinare, pizzicare per ingrandire e ruotare la filigrana direttamente sull\'immagine.',
+        'touchGestureHint': 'Trascina per spostare, pizzica per ridimensionare, ruota con due dita. Doppio tocco per ricaricare.',
+        'mouseGestureHint': 'Trascina per spostare la filigrana. Passa sopra per vedere l\'opzione di ricarica.',
         'dir': 'ltr'
     },
     // Spanish
@@ -185,6 +193,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': 'Volver a subir',
         'gestureHint': 'Consejo: Puedes arrastrar, pellizcar para hacer zoom y rotar la marca de agua directamente en la imagen.',
+        'touchGestureHint': 'Arrastra para mover, pellizca para cambiar tamaño, gira con dos dedos. Doble toque para volver a subir.',
+        'mouseGestureHint': 'Arrastra para mover la marca de agua. Pasa el cursor por encima para ver la opción de volver a subir.',
         'dir': 'ltr'
     },
     // Japanese
@@ -222,6 +232,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': '再アップロード',
         'gestureHint': 'ヒント：画像上で直接透かしをドラッグ、ピンチズーム、回転できます。',
+        'touchGestureHint': 'ドラッグで移動、ピンチでサイズ変更、二本指で回転。ダブルタップで再アップロード。',
+        'mouseGestureHint': 'ドラッグで透かしを移動。ホバーすると再アップロードオプションが表示されます。',
         'dir': 'ltr'
     },
     // Russian
@@ -259,6 +271,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': 'Перезагрузить',
         'gestureHint': 'Совет: Вы можете перетаскивать, масштабировать и вращать водяной знак прямо на изображении.',
+        'touchGestureHint': 'Перетаскивайте для перемещения, сжимайте для изменения размера, вращайте двумя пальцами. Двойное касание для перезагрузки.',
+        'mouseGestureHint': 'Перетаскивайте для перемещения водяного знака. Наведите курсор, чтобы увидеть опцию перезагрузки.',
         'dir': 'ltr'
     },
     // Arabic
@@ -296,6 +310,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': 'إعادة التحميل',
         'gestureHint': 'نصيحة: يمكنك سحب العلامة المائية وتكبيرها وتدويرها مباشرة على الصورة.',
+        'touchGestureHint': 'اسحب للتحريك، قرص للتحجيم، دوّر بإصبعين. انقر نقرًا مزدوجًا لإعادة التحميل.',
+        'mouseGestureHint': 'اسحب لتحريك العلامة المائية. مرر المؤشر فوقها لرؤية خيار إعادة التحميل.',
         'dir': 'rtl' // Right to left for Arabic
     },
     // Simplified Chinese
@@ -333,6 +349,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': '重新上传',
         'gestureHint': '提示：您可以直接在图片上拖动、缩放和旋转水印。',
+        'touchGestureHint': '拖动移动水印，捏合调整大小，双指旋转。双击可重新上传。',
+        'mouseGestureHint': '拖动移动水印。悬停鼠标可查看重新上传选项。',
         'dir': 'ltr'
     },
     // Traditional Chinese
@@ -370,6 +388,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': '重新上傳',
         'gestureHint': '提示：您可以直接在圖片上拖動、縮放和旋轉浮水印。',
+        'touchGestureHint': '拖動移動浮水印，捏合調整大小，雙指旋轉。雙擊可重新上傳。',
+        'mouseGestureHint': '拖動移動浮水印。懸停滑鼠可查看重新上傳選項。',
         'dir': 'ltr'
     },
     // Korean
@@ -407,6 +427,8 @@ const translations = {
         'degreeUnit': '°',
         'reuploadBtn': '다시 업로드',
         'gestureHint': '팁: 이미지에서 직접 워터마크를 드래그하고, 핀치하여 확대/축소하고, 회전할 수 있습니다.',
+        'touchGestureHint': '드래그하여 이동, 핀치하여 크기 조절, 두 손가락으로 회전. 두 번 탭하여 다시 업로드.',
+        'mouseGestureHint': '드래그하여 워터마크 이동. 마우스를 올려 다시 업로드 옵션 확인.',
         'dir': 'ltr'
     }
 };

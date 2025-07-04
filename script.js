@@ -212,6 +212,17 @@ function drawImage() {
     const gestureHint = document.getElementById('gestureHint');
     if (gestureHint) {
         gestureHint.style.display = 'block';
+
+        // Set different hint text based on device type
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            // Mobile device - show touch gesture hint
+            gestureHint.textContent = getTranslation('touchGestureHint') || 
+                'Drag to move, pinch to resize, rotate with two fingers. Double-tap to re-upload.';
+        } else {
+            // Desktop device - show mouse gesture hint
+            gestureHint.textContent = getTranslation('mouseGestureHint') || 
+                'Drag to move watermark. Hover to see re-upload option.';
+        }
     }
 }
 
@@ -476,14 +487,19 @@ function applyWatermark() {
         canvas.addEventListener('mouseleave', endGesture);
 
         // Touch events for mobile
-        canvas.addEventListener('touchstart', handleTouchStart);
-        canvas.addEventListener('touchmove', handleTouchMove);
+        canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+        canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
         canvas.addEventListener('touchend', handleTouchEnd);
+        canvas.addEventListener('touchcancel', handleTouchEnd);
 
         // Prevent context menu on right-click
         canvas.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
+
+        // Variables for double tap detection
+        let lastTapTime = 0;
+        let tapTimeout;
 
         // Function to handle touch start
         function handleTouchStart(e) {
@@ -491,13 +507,35 @@ function applyWatermark() {
             if (!originalImage) return;
 
             if (e.touches.length === 1) {
-                // Single touch - start drag
+                // Single touch - check for double tap or start drag
                 const touch = e.touches[0];
-                startGesture({
-                    clientX: touch.clientX,
-                    clientY: touch.clientY,
-                    preventDefault: function() {}
-                });
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTapTime;
+
+                // Clear any existing tap timeout
+                clearTimeout(tapTimeout);
+
+                if (tapLength < 300 && tapLength > 0) {
+                    // Double tap detected - show re-upload overlay
+                    const canvasOverlay = document.querySelector('.canvas-overlay');
+                    canvasOverlay.style.opacity = '1';
+
+                    // Hide the overlay after 3 seconds
+                    setTimeout(() => {
+                        canvasOverlay.style.opacity = '0';
+                    }, 3000);
+
+                    // Prevent drag operation on double tap
+                    return;
+                } else {
+                    // Start drag immediately for better responsiveness
+                    isDragging = true;
+                    lastX = touch.clientX;
+                    lastY = touch.clientY;
+                    canvas.classList.add('dragging');
+                }
+
+                lastTapTime = currentTime;
             } else if (e.touches.length === 2) {
                 // Two touches - start pinch/zoom and rotation
                 const touch1 = e.touches[0];
@@ -517,10 +555,14 @@ function applyWatermark() {
 
                 isScaling = true;
                 isRotating = true;
+                isDragging = true;  // Enable dragging with two fingers as well
 
                 // Set center point for gesture
                 lastX = (touch1.clientX + touch2.clientX) / 2;
                 lastY = (touch1.clientY + touch2.clientY) / 2;
+
+                // Add dragging class
+                canvas.classList.add('dragging');
             }
         }
 
@@ -532,12 +574,28 @@ function applyWatermark() {
             if (e.touches.length === 1 && isDragging) {
                 // Single touch - drag
                 const touch = e.touches[0];
-                moveGesture({
-                    clientX: touch.clientX,
-                    clientY: touch.clientY,
-                    preventDefault: function() {}
-                });
-            } else if (e.touches.length === 2 && (isScaling || isRotating)) {
+
+                // Calculate delta movement
+                const deltaX = touch.clientX - lastX;
+                const deltaY = touch.clientY - lastY;
+
+                // Update offsets
+                const xOffset = document.getElementById('xOffset');
+                const yOffset = document.getElementById('yOffset');
+                xOffset.value = parseInt(xOffset.value) + deltaX;
+                yOffset.value = parseInt(yOffset.value) + deltaY;
+
+                // Update display values
+                document.getElementById('xOffsetValue').textContent = xOffset.value;
+                document.getElementById('yOffsetValue').textContent = yOffset.value;
+
+                // Update last position
+                lastX = touch.clientX;
+                lastY = touch.clientY;
+
+                // Apply changes
+                applyWatermark();
+            } else if (e.touches.length === 2) {
                 // Two touches - pinch/zoom and rotation
                 const touch1 = e.touches[0];
                 const touch2 = e.touches[1];
@@ -612,7 +670,13 @@ function applyWatermark() {
 
         // Function to handle touch end
         function handleTouchEnd(e) {
-            endGesture();
+            // Make sure to reset all flags
+            isDragging = false;
+            isScaling = false;
+            isRotating = false;
+
+            // Remove dragging class
+            canvas.classList.remove('dragging');
         }
 
         // Function to start gesture

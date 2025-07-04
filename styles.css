@@ -198,13 +198,18 @@ label {
     transition: opacity 0.3s ease;
 }
 
-.canvas-container:hover .canvas-overlay {
-    opacity: 1;
+/* Only apply hover effects on devices that support hover (desktop) */
+@media (hover: hover) {
+    .canvas-container:hover .canvas-overlay {
+        opacity: 1;
+    }
+
+    .canvas-container:hover .gesture-hint {
+        opacity: 1;
+    }
 }
 
-.canvas-container:hover .gesture-hint {
-    opacity: 1;
-}
+/* For touch devices, we'll control the overlay visibility via JavaScript */
 
 .reupload-btn {
     padding: 10px 20px;
