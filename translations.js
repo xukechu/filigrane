@@ -24,6 +24,10 @@ const translations = {
         'opacity': 'Opacity:',
         'color': 'Color:',
         'rotation': 'Rotation:',
+        'repeat': 'Repeat',
+        'enableRepeat': 'Enable Repeat',
+        'repeatSpacingX': 'Spacing X:',
+        'repeatSpacingY': 'Spacing Y:',
         'downloadBtn': 'Download Image',
         'watermarkDefault': 'Watermark',
         'enterWatermarkText': 'Enter watermark text',
@@ -56,6 +60,10 @@ const translations = {
         'opacity': 'Opacité:',
         'color': 'Couleur:',
         'rotation': 'Rotation:',
+        'repeat': 'Répétition',
+        'enableRepeat': 'Activer la Répétition',
+        'repeatSpacingX': 'Espacement X:',
+        'repeatSpacingY': 'Espacement Y:',
         'downloadBtn': 'Télécharger l\'Image',
         'watermarkDefault': 'Filigrane',
         'enterWatermarkText': 'Entrez le texte du filigrane',
@@ -88,6 +96,10 @@ const translations = {
         'opacity': 'Deckkraft:',
         'color': 'Farbe:',
         'rotation': 'Drehung:',
+        'repeat': 'Wiederholen',
+        'enableRepeat': 'Wiederholung aktivieren',
+        'repeatSpacingX': 'Abstand X:',
+        'repeatSpacingY': 'Abstand Y:',
         'downloadBtn': 'Bild Herunterladen',
         'watermarkDefault': 'Wasserzeichen',
         'enterWatermarkText': 'Wasserzeichen-Text eingeben',
@@ -120,6 +132,10 @@ const translations = {
         'opacity': 'Opacità:',
         'color': 'Colore:',
         'rotation': 'Rotazione:',
+        'repeat': 'Ripeti',
+        'enableRepeat': 'Abilita Ripetizione',
+        'repeatSpacingX': 'Spaziatura X:',
+        'repeatSpacingY': 'Spaziatura Y:',
         'downloadBtn': 'Scarica Immagine',
         'watermarkDefault': 'Filigrana',
         'enterWatermarkText': 'Inserisci testo filigrana',
@@ -152,6 +168,10 @@ const translations = {
         'opacity': 'Opacidad:',
         'color': 'Color:',
         'rotation': 'Rotación:',
+        'repeat': 'Repetir',
+        'enableRepeat': 'Habilitar Repetición',
+        'repeatSpacingX': 'Espaciado X:',
+        'repeatSpacingY': 'Espaciado Y:',
         'downloadBtn': 'Descargar Imagen',
         'watermarkDefault': 'Marca de Agua',
         'enterWatermarkText': 'Introduzca texto de marca de agua',
@@ -184,6 +204,10 @@ const translations = {
         'opacity': '不透明度:',
         'color': '色:',
         'rotation': '回転:',
+        'repeat': '繰り返し',
+        'enableRepeat': '繰り返しを有効にする',
+        'repeatSpacingX': '間隔 X:',
+        'repeatSpacingY': '間隔 Y:',
         'downloadBtn': '画像をダウンロード',
         'watermarkDefault': '透かし',
         'enterWatermarkText': '透かしテキストを入力',
@@ -216,6 +240,10 @@ const translations = {
         'opacity': 'Прозрачность:',
         'color': 'Цвет:',
         'rotation': 'Вращение:',
+        'repeat': 'Повторение',
+        'enableRepeat': 'Включить Повторение',
+        'repeatSpacingX': 'Интервал X:',
+        'repeatSpacingY': 'Интервал Y:',
         'downloadBtn': 'Скачать Изображение',
         'watermarkDefault': 'Водяной Знак',
         'enterWatermarkText': 'Введите текст водяного знака',
@@ -248,6 +276,10 @@ const translations = {
         'opacity': 'الشفافية:',
         'color': 'اللون:',
         'rotation': 'الدوران:',
+        'repeat': 'تكرار',
+        'enableRepeat': 'تمكين التكرار',
+        'repeatSpacingX': 'المسافة X:',
+        'repeatSpacingY': 'المسافة Y:',
         'downloadBtn': 'تحميل الصورة',
         'watermarkDefault': 'علامة مائية',
         'enterWatermarkText': 'أدخل نص العلامة المائية',
@@ -280,6 +312,10 @@ const translations = {
         'opacity': '不透明度:',
         'color': '颜色:',
         'rotation': '旋转:',
+        'repeat': '重复',
+        'enableRepeat': '启用重复',
+        'repeatSpacingX': 'X 间距:',
+        'repeatSpacingY': 'Y 间距:',
         'downloadBtn': '下载图片',
         'watermarkDefault': '水印',
         'enterWatermarkText': '输入水印文本',
@@ -312,6 +348,10 @@ const translations = {
         'opacity': '不透明度:',
         'color': '顏色:',
         'rotation': '旋轉:',
+        'repeat': '重複',
+        'enableRepeat': '啟用重複',
+        'repeatSpacingX': 'X 間距:',
+        'repeatSpacingY': 'Y 間距:',
         'downloadBtn': '下載圖片',
         'watermarkDefault': '浮水印',
         'enterWatermarkText': '輸入浮水印文字',
@@ -344,6 +384,10 @@ const translations = {
         'opacity': '불투명도:',
         'color': '색상:',
         'rotation': '회전:',
+        'repeat': '반복',
+        'enableRepeat': '반복 활성화',
+        'repeatSpacingX': 'X 간격:',
+        'repeatSpacingY': 'Y 간격:',
         'downloadBtn': '이미지 다운로드',
         'watermarkDefault': '워터마크',
         'enterWatermarkText': '워터마크 텍스트 입력',
@@ -475,6 +519,16 @@ function applyTranslations() {
 
     const rotationLabel = document.querySelector('#rotationLabel');
     rotationLabel.firstChild.textContent = langData.rotation + ' ';
+
+    // Update repeat section
+    document.querySelector('#repeatTitle').innerText = langData.repeat;
+    document.querySelector('#repeatEnabledText').innerText = langData.enableRepeat;
+
+    const repeatSpacingXLabel = document.querySelector('#repeatSpacingXLabel');
+    repeatSpacingXLabel.firstChild.textContent = langData.repeatSpacingX + ' ';
+
+    const repeatSpacingYLabel = document.querySelector('#repeatSpacingYLabel');
+    repeatSpacingYLabel.firstChild.textContent = langData.repeatSpacingY + ' ';
 
     // Update download button
     document.getElementById('downloadBtn').innerText = langData.downloadBtn;

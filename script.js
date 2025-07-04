@@ -1,6 +1,9 @@
 // Global variables to store image and watermark state
 let originalImage = null;
 let watermarkPosition = 'center'; // Default position
+let repeatEnabled = false; // Default repeat state
+let repeatSpacingX = 200; // Default horizontal spacing
+let repeatSpacingY = 200; // Default vertical spacing
 
 // Global function to update canvas text when language changes
 function updateCanvasText() {
@@ -257,9 +260,6 @@ function applyWatermark() {
             break;
     }
 
-    // Save the current canvas state
-    ctx.save();
-
     // Set text alignment for measuring
     ctx.textAlign = textAlign;
 
@@ -278,17 +278,77 @@ function applyWatermark() {
         textCenterX = -textWidth / 2;
     }
 
-    // Move to the position where we want to draw the text
-    ctx.translate(x, y);
+    if (repeatEnabled) {
+        // Draw repeated watermarks
+        const spacingX = parseInt(repeatSpacingX);
+        const spacingY = parseInt(repeatSpacingY);
 
-    // Rotate the canvas around the center of the text
-    ctx.rotate(rotationAngle * Math.PI / 180);
+        // Calculate how many watermarks we need in each direction
+        const numX = Math.ceil(canvas.width / spacingX) + 1;
+        const numY = Math.ceil(canvas.height / spacingY) + 1;
 
-    // Draw the text with the center point offset
-    ctx.fillText(text, textCenterX, textHeight / 2);
+        // Calculate starting positions
+        let startX, startY;
 
-    // Restore the canvas state
-    ctx.restore();
+        if (watermarkPosition.includes('Left')) {
+            startX = -spacingX;
+        } else if (watermarkPosition.includes('Right')) {
+            startX = canvas.width - spacingX;
+        } else {
+            startX = (canvas.width / 2) - (spacingX * Math.floor(numX / 2));
+        }
+
+        if (watermarkPosition.includes('top')) {
+            startY = -spacingY;
+        } else if (watermarkPosition.includes('bottom')) {
+            startY = canvas.height - spacingY;
+        } else {
+            startY = (canvas.height / 2) - (spacingY * Math.floor(numY / 2));
+        }
+
+        // Adjust for offsets
+        startX += xPos;
+        startY += yPos;
+
+        // Draw watermarks in a grid
+        for (let i = 0; i < numX; i++) {
+            for (let j = 0; j < numY; j++) {
+                const posX = startX + (i * spacingX);
+                const posY = startY + (j * spacingY);
+
+                // Save the current canvas state
+                ctx.save();
+
+                // Move to the position where we want to draw the text
+                ctx.translate(posX, posY);
+
+                // Rotate the canvas around the center of the text
+                ctx.rotate(rotationAngle * Math.PI / 180);
+
+                // Draw the text with the center point offset
+                ctx.fillText(text, textCenterX, textHeight / 2);
+
+                // Restore the canvas state
+                ctx.restore();
+            }
+        }
+    } else {
+        // Draw single watermark
+        // Save the current canvas state
+        ctx.save();
+
+        // Move to the position where we want to draw the text
+        ctx.translate(x, y);
+
+        // Rotate the canvas around the center of the text
+        ctx.rotate(rotationAngle * Math.PI / 180);
+
+        // Draw the text with the center point offset
+        ctx.fillText(text, textCenterX, textHeight / 2);
+
+        // Restore the canvas state
+        ctx.restore();
+    }
 
     // Reset global alpha
     ctx.globalAlpha = 1.0;
@@ -317,6 +377,32 @@ function applyWatermark() {
         applyWatermark();
     });
     textColor.addEventListener('input', applyWatermark);
+
+    // Event listeners for repeat controls
+    const repeatEnabledCheckbox = document.getElementById('repeatEnabled');
+    const repeatSpacingXInput = document.getElementById('repeatSpacingX');
+    const repeatSpacingYInput = document.getElementById('repeatSpacingY');
+    const repeatSpacingXValue = document.getElementById('repeatSpacingXValue');
+    const repeatSpacingYValue = document.getElementById('repeatSpacingYValue');
+
+    repeatEnabledCheckbox.addEventListener('change', function() {
+        repeatEnabled = this.checked;
+        repeatSpacingXInput.disabled = !this.checked;
+        repeatSpacingYInput.disabled = !this.checked;
+        applyWatermark();
+    });
+
+    repeatSpacingXInput.addEventListener('input', function() {
+        repeatSpacingXValue.textContent = this.value + getTranslation('pixelUnit');
+        repeatSpacingX = this.value;
+        applyWatermark();
+    });
+
+    repeatSpacingYInput.addEventListener('input', function() {
+        repeatSpacingYValue.textContent = this.value + getTranslation('pixelUnit');
+        repeatSpacingY = this.value;
+        applyWatermark();
+    });
 
     // Position button event listeners
     posTopLeft.addEventListener('click', function() {
@@ -362,6 +448,10 @@ function applyWatermark() {
     // Show the reupload button with "Upload" text initially
     document.getElementById('reuploadText').textContent = getTranslation('uploadPrompt');
     reuploadBtn.style.display = 'block';
+
+    // Initialize repeat spacing values
+    document.getElementById('repeatSpacingXValue').textContent = repeatSpacingX + getTranslation('pixelUnit');
+    document.getElementById('repeatSpacingYValue').textContent = repeatSpacingY + getTranslation('pixelUnit');
 
     // Initialize drag and drop functionality
     function initDragAndDrop() {
