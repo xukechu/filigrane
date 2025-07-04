@@ -94,6 +94,10 @@ canvas {
     display: block;
 }
 
+canvas.dragging {
+    cursor: move;
+}
+
 .controls {
     flex: 1;
     min-width: 300px;
@@ -198,6 +202,10 @@ label {
     opacity: 1;
 }
 
+.canvas-container:hover .gesture-hint {
+    opacity: 1;
+}
+
 .reupload-btn {
     padding: 10px 20px;
     background-color: rgba(255, 255, 255, 0.8);
@@ -210,6 +218,22 @@ label {
 
 .reupload-btn:hover {
     background-color: rgba(255, 255, 255, 1);
+}
+
+.gesture-hint {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    margin: 0 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 @media (max-width: 768px) {

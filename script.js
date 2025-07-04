@@ -4,6 +4,13 @@ let watermarkPosition = 'center'; // Default position
 let repeatEnabled = false; // Default repeat state
 let repeatSpacingX = 200; // Default horizontal spacing
 let repeatSpacingY = 200; // Default vertical spacing
+let isDragging = false; // Flag for drag operation
+let isScaling = false; // Flag for scaling operation
+let isRotating = false; // Flag for rotation operation
+let lastX = 0; // Last X position for drag/gesture operations
+let lastY = 0; // Last Y position for drag/gesture operations
+let startDistance = 0; // Starting distance for pinch/zoom
+let startAngle = 0; // Starting angle for rotation
 
 // Global function to update canvas text when language changes
 function updateCanvasText() {
@@ -148,6 +155,12 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.font = '20px Arial';
         ctx.textAlign = 'center';
         ctx.fillText(getTranslation('uploadPrompt'), canvas.width / 2, canvas.height / 2);
+
+        // Hide gesture hint when no image is loaded
+        const gestureHint = document.getElementById('gestureHint');
+        if (gestureHint) {
+            gestureHint.style.display = 'none';
+        }
     }
 
     // Load image when selected
@@ -194,6 +207,12 @@ function drawImage() {
     const canvas = document.getElementById('imageCanvas');
     const ctx = canvas.getContext('2d');
     ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
+
+    // Show gesture hint when image is loaded
+    const gestureHint = document.getElementById('gestureHint');
+    if (gestureHint) {
+        gestureHint.style.display = 'block';
+    }
 }
 
 // Global function to apply watermark to the image
@@ -439,8 +458,212 @@ function applyWatermark() {
         document.body.removeChild(link);
     });
 
-    // Initialize drag and drop functionality
+    // Initialize drag and drop functionality for file upload
     initDragAndDrop();
+
+    // Initialize gesture support for watermark manipulation
+    // This function sets up event listeners for mouse and touch events to enable:
+    // 1. Dragging the watermark to reposition it
+    // 2. Pinch/zoom gestures to resize the watermark
+    // 3. Rotation gestures to rotate the watermark
+    function initWatermarkGestures() {
+        const canvas = document.getElementById('imageCanvas');
+
+        // Mouse events for desktop
+        canvas.addEventListener('mousedown', startGesture);
+        canvas.addEventListener('mousemove', moveGesture);
+        canvas.addEventListener('mouseup', endGesture);
+        canvas.addEventListener('mouseleave', endGesture);
+
+        // Touch events for mobile
+        canvas.addEventListener('touchstart', handleTouchStart);
+        canvas.addEventListener('touchmove', handleTouchMove);
+        canvas.addEventListener('touchend', handleTouchEnd);
+
+        // Prevent context menu on right-click
+        canvas.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Function to handle touch start
+        function handleTouchStart(e) {
+            e.preventDefault();
+            if (!originalImage) return;
+
+            if (e.touches.length === 1) {
+                // Single touch - start drag
+                const touch = e.touches[0];
+                startGesture({
+                    clientX: touch.clientX,
+                    clientY: touch.clientY,
+                    preventDefault: function() {}
+                });
+            } else if (e.touches.length === 2) {
+                // Two touches - start pinch/zoom and rotation
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+
+                // Calculate initial distance for scaling
+                startDistance = Math.hypot(
+                    touch2.clientX - touch1.clientX,
+                    touch2.clientY - touch1.clientY
+                );
+
+                // Calculate initial angle for rotation
+                startAngle = Math.atan2(
+                    touch2.clientY - touch1.clientY,
+                    touch2.clientX - touch1.clientX
+                ) * 180 / Math.PI;
+
+                isScaling = true;
+                isRotating = true;
+
+                // Set center point for gesture
+                lastX = (touch1.clientX + touch2.clientX) / 2;
+                lastY = (touch1.clientY + touch2.clientY) / 2;
+            }
+        }
+
+        // Function to handle touch move
+        function handleTouchMove(e) {
+            e.preventDefault();
+            if (!originalImage) return;
+
+            if (e.touches.length === 1 && isDragging) {
+                // Single touch - drag
+                const touch = e.touches[0];
+                moveGesture({
+                    clientX: touch.clientX,
+                    clientY: touch.clientY,
+                    preventDefault: function() {}
+                });
+            } else if (e.touches.length === 2 && (isScaling || isRotating)) {
+                // Two touches - pinch/zoom and rotation
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+
+                // Calculate current center point
+                const currentX = (touch1.clientX + touch2.clientX) / 2;
+                const currentY = (touch1.clientY + touch2.clientY) / 2;
+
+                // Handle drag with two fingers
+                if (isDragging) {
+                    const deltaX = currentX - lastX;
+                    const deltaY = currentY - lastY;
+
+                    // Update offsets
+                    const xOffset = document.getElementById('xOffset');
+                    const yOffset = document.getElementById('yOffset');
+                    xOffset.value = parseInt(xOffset.value) + deltaX;
+                    yOffset.value = parseInt(yOffset.value) + deltaY;
+
+                    // Update display values
+                    document.getElementById('xOffsetValue').textContent = xOffset.value;
+                    document.getElementById('yOffsetValue').textContent = yOffset.value;
+                }
+
+                // Handle scaling
+                if (isScaling) {
+                    const currentDistance = Math.hypot(
+                        touch2.clientX - touch1.clientX,
+                        touch2.clientY - touch1.clientY
+                    );
+
+                    const scale = currentDistance / startDistance;
+
+                    // Update font size
+                    const fontSize = document.getElementById('fontSize');
+                    const newSize = Math.max(10, Math.min(300, parseInt(fontSize.value) * scale));
+                    fontSize.value = newSize;
+                    document.getElementById('fontSizeValue').textContent = newSize + getTranslation('pixelUnit');
+
+                    // Reset for next move
+                    startDistance = currentDistance;
+                }
+
+                // Handle rotation
+                if (isRotating) {
+                    const currentAngle = Math.atan2(
+                        touch2.clientY - touch1.clientY,
+                        touch2.clientX - touch1.clientX
+                    ) * 180 / Math.PI;
+
+                    const deltaAngle = currentAngle - startAngle;
+
+                    // Update rotation
+                    const rotation = document.getElementById('rotation');
+                    let newRotation = (parseInt(rotation.value) + deltaAngle) % 360;
+                    if (newRotation < 0) newRotation += 360;
+                    rotation.value = newRotation;
+                    document.getElementById('rotationValue').textContent = newRotation + getTranslation('degreeUnit');
+
+                    // Reset for next move
+                    startAngle = currentAngle;
+                }
+
+                // Update last position
+                lastX = currentX;
+                lastY = currentY;
+
+                // Apply changes
+                applyWatermark();
+            }
+        }
+
+        // Function to handle touch end
+        function handleTouchEnd(e) {
+            endGesture();
+        }
+
+        // Function to start gesture
+        function startGesture(e) {
+            if (!originalImage) return;
+            e.preventDefault();
+
+            isDragging = true;
+            lastX = e.clientX;
+            lastY = e.clientY;
+
+            // Add a class to indicate dragging state
+            canvas.classList.add('dragging');
+        }
+
+        // Function to move during gesture
+        function moveGesture(e) {
+            if (!isDragging || !originalImage) return;
+            e.preventDefault();
+
+            const deltaX = e.clientX - lastX;
+            const deltaY = e.clientY - lastY;
+
+            // Update offsets
+            const xOffset = document.getElementById('xOffset');
+            const yOffset = document.getElementById('yOffset');
+            xOffset.value = parseInt(xOffset.value) + deltaX;
+            yOffset.value = parseInt(yOffset.value) + deltaY;
+
+            // Update display values
+            document.getElementById('xOffsetValue').textContent = xOffset.value;
+            document.getElementById('yOffsetValue').textContent = yOffset.value;
+
+            // Update last position
+            lastX = e.clientX;
+            lastY = e.clientY;
+
+            // Apply changes
+            applyWatermark();
+        }
+
+        // Function to end gesture
+        function endGesture() {
+            isDragging = false;
+            isScaling = false;
+            isRotating = false;
+
+            // Remove dragging class
+            canvas.classList.remove('dragging');
+        }
+    }
 
     // Initialize the canvas
     initCanvas();
@@ -452,6 +675,9 @@ function applyWatermark() {
     // Initialize repeat spacing values
     document.getElementById('repeatSpacingXValue').textContent = repeatSpacingX + getTranslation('pixelUnit');
     document.getElementById('repeatSpacingYValue').textContent = repeatSpacingY + getTranslation('pixelUnit');
+
+    // Initialize gesture support for watermark
+    initWatermarkGestures();
 
     // Initialize drag and drop functionality
     function initDragAndDrop() {

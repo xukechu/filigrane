@@ -36,6 +36,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': 'Re-upload',
+        'gestureHint': 'Tip: You can drag, pinch to zoom, and rotate the watermark directly on the image.',
         'dir': 'ltr' // text direction: ltr (left to right) or rtl (right to left)
     },
     // French
@@ -72,6 +73,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': 'Re-télécharger',
+        'gestureHint': 'Astuce: Vous pouvez faire glisser, pincer pour zoomer et faire pivoter le filigrane directement sur l\'image.',
         'dir': 'ltr'
     },
     // German
@@ -108,6 +110,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': 'Neu hochladen',
+        'gestureHint': 'Tipp: Sie können das Wasserzeichen direkt auf dem Bild ziehen, zum Zoomen zusammendrücken und drehen.',
         'dir': 'ltr'
     },
     // Italian
@@ -144,6 +147,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': 'Ricarica',
+        'gestureHint': 'Suggerimento: Puoi trascinare, pizzicare per ingrandire e ruotare la filigrana direttamente sull\'immagine.',
         'dir': 'ltr'
     },
     // Spanish
@@ -180,6 +184,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': 'Volver a subir',
+        'gestureHint': 'Consejo: Puedes arrastrar, pellizcar para hacer zoom y rotar la marca de agua directamente en la imagen.',
         'dir': 'ltr'
     },
     // Japanese
@@ -216,6 +221,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': '再アップロード',
+        'gestureHint': 'ヒント：画像上で直接透かしをドラッグ、ピンチズーム、回転できます。',
         'dir': 'ltr'
     },
     // Russian
@@ -252,6 +258,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': 'Перезагрузить',
+        'gestureHint': 'Совет: Вы можете перетаскивать, масштабировать и вращать водяной знак прямо на изображении.',
         'dir': 'ltr'
     },
     // Arabic
@@ -288,6 +295,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': 'إعادة التحميل',
+        'gestureHint': 'نصيحة: يمكنك سحب العلامة المائية وتكبيرها وتدويرها مباشرة على الصورة.',
         'dir': 'rtl' // Right to left for Arabic
     },
     // Simplified Chinese
@@ -324,6 +332,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': '重新上传',
+        'gestureHint': '提示：您可以直接在图片上拖动、缩放和旋转水印。',
         'dir': 'ltr'
     },
     // Traditional Chinese
@@ -360,6 +369,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': '重新上傳',
+        'gestureHint': '提示：您可以直接在圖片上拖動、縮放和旋轉浮水印。',
         'dir': 'ltr'
     },
     // Korean
@@ -396,6 +406,7 @@ const translations = {
         'percentUnit': '%',
         'degreeUnit': '°',
         'reuploadBtn': '다시 업로드',
+        'gestureHint': '팁: 이미지에서 직접 워터마크를 드래그하고, 핀치하여 확대/축소하고, 회전할 수 있습니다.',
         'dir': 'ltr'
     }
 };
@@ -535,6 +546,12 @@ function applyTranslations() {
 
     // Update re-upload button
     document.getElementById('reuploadText').innerText = langData.reuploadBtn;
+
+    // Update gesture hint
+    const gestureHint = document.getElementById('gestureHint');
+    if (gestureHint) {
+        gestureHint.innerText = langData.gestureHint;
+    }
 
     // Update unit suffixes for font size, opacity, and rotation
     const fontSize = document.getElementById('fontSize');
