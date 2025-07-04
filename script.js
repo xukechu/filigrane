@@ -179,15 +179,15 @@ document.addEventListener('DOMContentLoaded', function() {
         applyWatermark();
     });
     fontSize.addEventListener('input', function() {
-        fontSizeValue.textContent = this.value + 'px';
+        fontSizeValue.textContent = this.value + getTranslation('pixelUnit');
         applyWatermark();
     });
     opacity.addEventListener('input', function() {
-        opacityValue.textContent = this.value + '%';
+        opacityValue.textContent = this.value + getTranslation('percentUnit');
         applyWatermark();
     });
     rotation.addEventListener('input', function() {
-        rotationValue.textContent = this.value + '°';
+        rotationValue.textContent = this.value + getTranslation('degreeUnit');
         applyWatermark();
     });
     textColor.addEventListener('input', applyWatermark);

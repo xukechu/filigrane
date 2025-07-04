@@ -26,6 +26,9 @@ const translations = {
         'watermarkDefault': 'Watermark',
         'enterWatermarkText': 'Enter watermark text',
         'downloadFilename': 'watermarked-image.png',
+        'pixelUnit': 'px',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr' // text direction: ltr (left to right) or rtl (right to left)
     },
     // French
@@ -52,6 +55,9 @@ const translations = {
         'watermarkDefault': 'Filigrane',
         'enterWatermarkText': 'Entrez le texte du filigrane',
         'downloadFilename': 'image-filigranee.png',
+        'pixelUnit': 'px',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr'
     },
     // German
@@ -78,6 +84,9 @@ const translations = {
         'watermarkDefault': 'Wasserzeichen',
         'enterWatermarkText': 'Wasserzeichen-Text eingeben',
         'downloadFilename': 'wasserzeichen-bild.png',
+        'pixelUnit': 'px',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr'
     },
     // Italian
@@ -104,6 +113,9 @@ const translations = {
         'watermarkDefault': 'Filigrana',
         'enterWatermarkText': 'Inserisci testo filigrana',
         'downloadFilename': 'immagine-filigranata.png',
+        'pixelUnit': 'px',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr'
     },
     // Spanish
@@ -130,6 +142,9 @@ const translations = {
         'watermarkDefault': 'Marca de Agua',
         'enterWatermarkText': 'Introduzca texto de marca de agua',
         'downloadFilename': 'imagen-con-marca.png',
+        'pixelUnit': 'px',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr'
     },
     // Japanese
@@ -156,6 +171,9 @@ const translations = {
         'watermarkDefault': '透かし',
         'enterWatermarkText': '透かしテキストを入力',
         'downloadFilename': '透かし入り画像.png',
+        'pixelUnit': 'px',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr'
     },
     // Russian
@@ -182,6 +200,9 @@ const translations = {
         'watermarkDefault': 'Водяной Знак',
         'enterWatermarkText': 'Введите текст водяного знака',
         'downloadFilename': 'изображение-с-водяным-знаком.png',
+        'pixelUnit': 'пкс',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr'
     },
     // Arabic
@@ -208,6 +229,9 @@ const translations = {
         'watermarkDefault': 'علامة مائية',
         'enterWatermarkText': 'أدخل نص العلامة المائية',
         'downloadFilename': 'صورة-بعلامة-مائية.png',
+        'pixelUnit': 'بكسل',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'rtl' // Right to left for Arabic
     },
     // Simplified Chinese
@@ -234,6 +258,9 @@ const translations = {
         'watermarkDefault': '水印',
         'enterWatermarkText': '输入水印文本',
         'downloadFilename': '带水印图片.png',
+        'pixelUnit': '像素',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr'
     },
     // Traditional Chinese
@@ -260,6 +287,9 @@ const translations = {
         'watermarkDefault': '浮水印',
         'enterWatermarkText': '輸入浮水印文字',
         'downloadFilename': '帶浮水印圖片.png',
+        'pixelUnit': '像素',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr'
     },
     // Korean
@@ -286,6 +316,9 @@ const translations = {
         'watermarkDefault': '워터마크',
         'enterWatermarkText': '워터마크 텍스트 입력',
         'downloadFilename': '워터마크-이미지.png',
+        'pixelUnit': '픽셀',
+        'percentUnit': '%',
+        'degreeUnit': '°',
         'dir': 'ltr'
     }
 };
@@ -310,22 +343,22 @@ const languageMapping = {
 function getBrowserLanguage() {
     const browserLang = navigator.language || navigator.userLanguage;
     const langCode = browserLang.split('-')[0]; // Get the primary language code
-    
+
     // Check if we have an exact match for the full browser language
     if (translations[browserLang]) {
         return browserLang;
     }
-    
+
     // Check if we have a mapping for this language
     if (languageMapping[browserLang]) {
         return languageMapping[browserLang];
     }
-    
+
     // Check if we have a mapping for the primary language code
     if (languageMapping[langCode]) {
         return languageMapping[langCode];
     }
-    
+
     // Default to English if no match found
     return 'en';
 }
@@ -355,53 +388,71 @@ function setLanguage(langCode) {
 function applyTranslations() {
     const currentLang = getCurrentLanguage();
     const langData = translations[currentLang] || translations['en'];
-    
+
     // Update page title
     document.title = langData.pageTitle;
-    
+
     // Update main heading
-    document.querySelector('h1').textContent = langData.mainHeading;
-    
+    document.querySelector('h1').innerText = langData.mainHeading;
+
     // Update upload section
-    document.querySelector('.upload-section p').textContent = langData.selectImage;
-    
+    document.querySelector('.upload-section p').innerText = langData.selectImage;
+
     // Update watermark text section
-    document.querySelector('.control-group h3:nth-of-type(1)').textContent = langData.watermarkText;
+    document.querySelector('#watermarkTextTitle').innerText = langData.watermarkText;
     document.getElementById('watermarkText').placeholder = langData.enterWatermarkText;
-    
+
     // Update position section
-    document.querySelector('.control-group h3:nth-of-type(2)').textContent = langData.position;
-    document.getElementById('posTopLeft').textContent = langData.topLeft;
-    document.getElementById('posTopRight').textContent = langData.topRight;
-    document.getElementById('posCenter').textContent = langData.center;
-    document.getElementById('posBottomLeft').textContent = langData.bottomLeft;
-    document.getElementById('posBottomRight').textContent = langData.bottomRight;
-    
+    document.querySelector('#positionTitle').innerText = langData.position;
+    document.getElementById('posTopLeft').innerText = langData.topLeft;
+    document.getElementById('posTopRight').innerText = langData.topRight;
+    document.getElementById('posCenter').innerText = langData.center;
+    document.getElementById('posBottomLeft').innerText = langData.bottomLeft;
+    document.getElementById('posBottomRight').innerText = langData.bottomRight;
+
     // Update offset labels
-    const xOffsetLabel = document.querySelector('label[for="xOffset"]') || document.querySelector('.position-sliders label:nth-of-type(1)');
-    xOffsetLabel.childNodes[0].nodeValue = langData.xOffset + ' ';
-    
-    const yOffsetLabel = document.querySelector('label[for="yOffset"]') || document.querySelector('.position-sliders label:nth-of-type(2)');
-    yOffsetLabel.childNodes[0].nodeValue = langData.yOffset + ' ';
-    
+    const xOffsetLabel = document.querySelector('.position-sliders label:nth-of-type(1)');
+    xOffsetLabel.firstChild.innerText = langData.xOffset + ' ';
+
+    const yOffsetLabel = document.querySelector('.position-sliders label:nth-of-type(2)');
+    yOffsetLabel.firstChild.innerText = langData.yOffset + ' ';
+
     // Update appearance section
-    document.querySelector('.control-group h3:nth-of-type(3)').textContent = langData.appearance;
-    
-    const fontSizeLabel = document.querySelector('label[for="fontSize"]') || document.querySelector('.control-group:nth-of-type(3) label:nth-of-type(1)');
-    fontSizeLabel.childNodes[0].nodeValue = langData.fontSize + ' ';
-    
-    const opacityLabel = document.querySelector('label[for="opacity"]') || document.querySelector('.control-group:nth-of-type(3) label:nth-of-type(2)');
-    opacityLabel.childNodes[0].nodeValue = langData.opacity + ' ';
-    
-    const colorLabel = document.querySelector('label[for="textColor"]') || document.querySelector('.control-group:nth-of-type(3) label:nth-of-type(3)');
-    colorLabel.childNodes[0].nodeValue = langData.color + ' ';
-    
-    const rotationLabel = document.querySelector('label[for="rotation"]') || document.querySelector('.control-group:nth-of-type(3) label:nth-of-type(4)');
-    rotationLabel.childNodes[0].nodeValue = langData.rotation + ' ';
-    
+    document.querySelector('#appearanceTitle').innerText = langData.appearance;
+
+    const fontSizeLabel = document.querySelector('#fontSizeLabel');
+    fontSizeLabel.firstChild.textContent = langData.fontSize + ' ';
+
+    const opacityLabel = document.querySelector('#opacityLabel');
+    opacityLabel.firstChild.textContent = langData.opacity + ' ';
+
+    const colorLabel = document.querySelector('#colorLabel');
+    colorLabel.firstChild.textContent = langData.color + ' ';
+
+    const rotationLabel = document.querySelector('#rotationLabel');
+    rotationLabel.firstChild.textContent = langData.rotation + ' ';
+
     // Update download button
-    document.getElementById('downloadBtn').textContent = langData.downloadBtn;
-    
+    document.getElementById('downloadBtn').innerText = langData.downloadBtn;
+
+    // Update unit suffixes for font size, opacity, and rotation
+    const fontSize = document.getElementById('fontSize');
+    const opacity = document.getElementById('opacity');
+    const rotation = document.getElementById('rotation');
+    const fontSizeValue = document.getElementById('fontSizeValue');
+    const opacityValue = document.getElementById('opacityValue');
+    const rotationValue = document.getElementById('rotationValue');
+
+    if (fontSize && fontSizeValue) {
+        fontSizeValue.textContent = fontSize.value + langData.pixelUnit;
+    }
+    if (opacity && opacityValue) {
+        opacityValue.textContent = opacity.value + langData.percentUnit;
+    }
+    if (rotation && rotationValue) {
+        rotationValue.textContent = rotation.value + langData.degreeUnit;
+    }
+
     // Set text direction for the whole document
     document.documentElement.dir = langData.dir;
     document.documentElement.lang = currentLang;
@@ -414,13 +465,13 @@ function createLanguageSelector() {
     langSelector.className = 'language-selector';
     langSelector.style.textAlign = 'right';
     langSelector.style.marginBottom = '10px';
-    
+
     // Create select element
     const select = document.createElement('select');
     select.id = 'languageSelect';
     select.style.padding = '5px';
     select.style.borderRadius = '4px';
-    
+
     // Add options for each language
     const languageNames = {
         'en': 'English',
@@ -435,25 +486,25 @@ function createLanguageSelector() {
         'zh-TW': '繁體中文',
         'ko': '한국어'
     };
-    
+
     Object.keys(languageNames).forEach(langCode => {
         const option = document.createElement('option');
         option.value = langCode;
-        option.textContent = languageNames[langCode];
+        option.innerText = languageNames[langCode];
         select.appendChild(option);
     });
-    
+
     // Set the current language
     select.value = getCurrentLanguage();
-    
+
     // Add event listener for language change
     select.addEventListener('change', function() {
         setLanguage(this.value);
     });
-    
+
     // Add select to container
     langSelector.appendChild(select);
-    
+
     // Insert the language selector at the top of the container
     const container = document.querySelector('.container');
     container.insertBefore(langSelector, container.firstChild);

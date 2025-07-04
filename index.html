@@ -22,12 +22,12 @@
 
             <div class="controls">
                 <div class="control-group">
-                    <h3>Watermark Text</h3>
+                    <h3 id="watermarkTextTitle">Watermark Text</h3>
                     <input type="text" id="watermarkText" placeholder="Enter watermark text" value="Watermark">
                 </div>
 
                 <div class="control-group">
-                    <h3>Position</h3>
+                    <h3 id="positionTitle">Position</h3>
                     <div class="position-controls">
                         <button id="posTopLeft">Top Left</button>
                         <button id="posTopRight">Top Right</button>
@@ -42,11 +42,11 @@
                 </div>
 
                 <div class="control-group">
-                    <h3>Appearance</h3>
-                    <label>Font Size: <input type="range" id="fontSize" min="10" max="300" value="80"><span id="fontSizeValue">80px</span></label>
-                    <label>Opacity: <input type="range" id="opacity" min="0" max="100" value="50"><span id="opacityValue">50%</span></label>
-                    <label>Color: <input type="color" id="textColor" value="#ffffff"></label>
-                    <label>Rotation: <input type="range" id="rotation" min="0" max="360" value="0"><span id="rotationValue">0°</span></label>
+                    <h3 id="appearanceTitle">Appearance</h3>
+                    <label id="fontSizeLabel">Font Size: <input type="range" id="fontSize" min="10" max="300" value="80"><span id="fontSizeValue">80px</span></label>
+                    <label id="opacityLabel">Opacity: <input type="range" id="opacity" min="0" max="100" value="50"><span id="opacityValue">50%</span></label>
+                    <label id="colorLabel">Color: <input type="color" id="textColor" value="#ffffff"></label>
+                    <label id="rotationLabel">Rotation: <input type="range" id="rotation" min="0" max="360" value="0"><span id="rotationValue">0°</span></label>
                 </div>
 
                 <div class="control-group">
