@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     drawImage();
                     applyWatermark();
                     downloadBtn.disabled = false;
+                    document.getElementById('reuploadText').textContent = getTranslation('reuploadBtn');
                     reuploadBtn.style.display = 'block'; // Show re-upload button
                 };
                 img.src = event.target.result;
@@ -240,6 +241,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the canvas
     initCanvas();
 
+    // Show the reupload button with "Upload" text initially
+    document.getElementById('reuploadText').textContent = getTranslation('uploadPrompt');
+    reuploadBtn.style.display = 'block';
+
     // Initialize drag and drop functionality
     function initDragAndDrop() {
         const uploadSection = document.querySelector('.upload-section');
@@ -306,6 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         drawImage();
                         applyWatermark();
                         downloadBtn.disabled = false;
+                        document.getElementById('reuploadText').textContent = getTranslation('reuploadBtn');
                         reuploadBtn.style.display = 'block';
                     };
                     img.src = event.target.result;
