@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Watermark Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Image Watermark Tool</h1>
+
+        <div class="upload-section">
+            <input type="file" id="imageInput" accept="image/*">
+            <p>Select an image to add a watermark</p>
+        </div>
+
+        <div class="editor-container">
+            <div class="canvas-container">
+                <canvas id="imageCanvas"></canvas>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <h3>Watermark Text</h3>
+                    <input type="text" id="watermarkText" placeholder="Enter watermark text" value="Watermark">
+                </div>
+
+                <div class="control-group">
+                    <h3>Position</h3>
+                    <div class="position-controls">
+                        <button id="posTopLeft">Top Left</button>
+                        <button id="posTopRight">Top Right</button>
+                        <button id="posCenter">Center</button>
+                        <button id="posBottomLeft">Bottom Left</button>
+                        <button id="posBottomRight">Bottom Right</button>
+                    </div>
+                    <div class="position-sliders">
+                        <label>X Offset: <input type="range" id="xOffset" min="-300" max="300" value="0"><span id="xOffsetValue">0</span></label>
+                        <label>Y Offset: <input type="range" id="yOffset" min="-300" max="300" value="0"><span id="yOffsetValue">0</span></label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3>Appearance</h3>
+                    <label>Font Size: <input type="range" id="fontSize" min="10" max="300" value="80"><span id="fontSizeValue">80px</span></label>
+                    <label>Opacity: <input type="range" id="opacity" min="0" max="100" value="50"><span id="opacityValue">50%</span></label>
+                    <label>Color: <input type="color" id="textColor" value="#ffffff"></label>
+                    <label>Rotation: <input type="range" id="rotation" min="0" max="360" value="0"><span id="rotationValue">0°</span></label>
+                </div>
+
+                <div class="control-group">
+                    <button id="downloadBtn" disabled>Download Image</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
