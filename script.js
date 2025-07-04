@@ -24,6 +24,90 @@ function updateCanvasText() {
     }
 }
 
+// Function to update meta tags for SEO when language changes
+function updateMetaTags() {
+    const currentLang = getCurrentLanguage();
+
+    // Update title
+    document.title = getTranslation('pageTitle');
+
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]:not([lang])');
+    if (metaDescription) {
+        metaDescription.content = getTranslation('pageDescription');
+    }
+
+    // Update meta keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) {
+        metaKeywords.content = getTranslation('pageKeywords');
+    }
+
+    // Update Open Graph title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+        ogTitle.content = getTranslation('pageTitle');
+    }
+
+    // Update Open Graph description
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+        ogDescription.content = getTranslation('pageDescription');
+    }
+
+    // Update Open Graph locale
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) {
+        // Map language code to locale format
+        const localeMap = {
+            'en': 'en_US',
+            'fr': 'fr_FR',
+            'de': 'de_DE',
+            'it': 'it_IT',
+            'es': 'es_ES',
+            'ja': 'ja_JP',
+            'ru': 'ru_RU',
+            'ar': 'ar_SA',
+            'zh-CN': 'zh_CN',
+            'zh-TW': 'zh_TW',
+            'ko': 'ko_KR'
+        };
+        ogLocale.content = localeMap[currentLang] || 'en_US';
+    }
+
+    // Update Twitter title
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle) {
+        twitterTitle.content = getTranslation('pageTitle');
+    }
+
+    // Update Twitter description
+    const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+    if (twitterDescription) {
+        twitterDescription.content = getTranslation('pageDescription');
+    }
+
+    // Update canonical and alternate links
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+        const baseUrl = canonical.href.split('/').slice(0, -1).join('/') || 'https://example.com';
+
+        // Update hreflang links
+        const alternateLinks = document.querySelectorAll('link[rel="alternate"][hreflang]');
+        alternateLinks.forEach(link => {
+            const lang = link.getAttribute('hreflang');
+            if (lang === 'x-default') {
+                link.href = baseUrl + '/';
+            } else {
+                link.href = baseUrl + '/' + lang + '/';
+            }
+        });
+    }
+
+    // Update html lang attribute
+    document.documentElement.lang = currentLang;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Get DOM elements
     const imageInput = document.getElementById('imageInput');

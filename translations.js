@@ -4,7 +4,9 @@
 const translations = {
     // English (default)
     'en': {
-        'pageTitle': 'Image Watermark Tool',
+        'pageTitle': 'Image Watermark Tool - Add Text Watermarks to Your Images',
+        'pageDescription': 'Free online tool to add text watermarks to your images. Customize position, size, color, opacity, and rotation of your watermark.',
+        'pageKeywords': 'image watermark, watermark tool, photo watermark, text watermark, image editor, free watermark',
         'mainHeading': 'Image Watermark Tool',
         'selectImage': 'Select an image or drag & drop here',
         'uploadPrompt': 'Click to upload or drag an image here',
@@ -34,7 +36,9 @@ const translations = {
     },
     // French
     'fr': {
-        'pageTitle': 'Outil de Filigrane d\'Image',
+        'pageTitle': 'Outil de Filigrane d\'Image - Ajoutez des Filigranes à Vos Images',
+        'pageDescription': 'Outil en ligne gratuit pour ajouter des filigranes textuels à vos images. Personnalisez la position, la taille, la couleur, l\'opacité et la rotation de votre filigrane.',
+        'pageKeywords': 'filigrane d\'image, outil de filigrane, filigrane photo, filigrane texte, éditeur d\'image, filigrane gratuit',
         'mainHeading': 'Outil de Filigrane d\'Image',
         'selectImage': 'Sélectionnez une image pour ajouter un filigrane',
         'uploadPrompt': 'Téléchargez une image pour ajouter un filigrane',
@@ -64,7 +68,9 @@ const translations = {
     },
     // German
     'de': {
-        'pageTitle': 'Bild-Wasserzeichen-Tool',
+        'pageTitle': 'Bild-Wasserzeichen-Tool - Fügen Sie Ihren Bildern Wasserzeichen hinzu',
+        'pageDescription': 'Kostenloses Online-Tool zum Hinzufügen von Textwasserzeichen zu Ihren Bildern. Passen Sie Position, Größe, Farbe, Deckkraft und Drehung Ihres Wasserzeichens an.',
+        'pageKeywords': 'Bildwasserzeichen, Wasserzeichen-Tool, Fotowasserzeichen, Textwasserzeichen, Bildbearbeitung, kostenloses Wasserzeichen',
         'mainHeading': 'Bild-Wasserzeichen-Tool',
         'selectImage': 'Wählen Sie ein Bild aus, um ein Wasserzeichen hinzuzufügen',
         'uploadPrompt': 'Laden Sie ein Bild hoch, um ein Wasserzeichen hinzuzufügen',
@@ -94,7 +100,9 @@ const translations = {
     },
     // Italian
     'it': {
-        'pageTitle': 'Strumento Filigrana Immagine',
+        'pageTitle': 'Strumento Filigrana Immagine - Aggiungi Filigrane alle Tue Immagini',
+        'pageDescription': 'Strumento online gratuito per aggiungere filigrane di testo alle tue immagini. Personalizza posizione, dimensione, colore, opacità e rotazione della tua filigrana.',
+        'pageKeywords': 'filigrana immagine, strumento filigrana, filigrana foto, filigrana testo, editor immagini, filigrana gratuita',
         'mainHeading': 'Strumento Filigrana Immagine',
         'selectImage': 'Seleziona un\'immagine per aggiungere una filigrana',
         'uploadPrompt': 'Carica un\'immagine per aggiungere una filigrana',
@@ -124,7 +132,9 @@ const translations = {
     },
     // Spanish
     'es': {
-        'pageTitle': 'Herramienta de Marca de Agua de Imagen',
+        'pageTitle': 'Herramienta de Marca de Agua de Imagen - Añade Marcas de Agua a Tus Imágenes',
+        'pageDescription': 'Herramienta en línea gratuita para añadir marcas de agua de texto a tus imágenes. Personaliza la posición, tamaño, color, opacidad y rotación de tu marca de agua.',
+        'pageKeywords': 'marca de agua de imagen, herramienta de marca de agua, marca de agua de foto, marca de agua de texto, editor de imágenes, marca de agua gratuita',
         'mainHeading': 'Herramienta de Marca de Agua de Imagen',
         'selectImage': 'Seleccione una imagen para añadir una marca de agua',
         'uploadPrompt': 'Suba una imagen para añadir una marca de agua',
@@ -154,7 +164,9 @@ const translations = {
     },
     // Japanese
     'ja': {
-        'pageTitle': '画像透かしツール',
+        'pageTitle': '画像透かしツール - 画像にテキスト透かしを追加',
+        'pageDescription': '画像にテキスト透かしを追加する無料オンラインツール。透かしの位置、サイズ、色、不透明度、回転をカスタマイズできます。',
+        'pageKeywords': '画像透かし, 透かしツール, 写真透かし, テキスト透かし, 画像編集, 無料透かし',
         'mainHeading': '画像透かしツール',
         'selectImage': '透かしを追加する画像を選択',
         'uploadPrompt': '透かしを追加する画像をアップロード',
@@ -184,7 +196,9 @@ const translations = {
     },
     // Russian
     'ru': {
-        'pageTitle': 'Инструмент Водяных Знаков',
+        'pageTitle': 'Инструмент Водяных Знаков - Добавляйте Текстовые Водяные Знаки на Ваши Изображения',
+        'pageDescription': 'Бесплатный онлайн-инструмент для добавления текстовых водяных знаков на ваши изображения. Настройте положение, размер, цвет, прозрачность и поворот вашего водяного знака.',
+        'pageKeywords': 'водяной знак изображения, инструмент водяных знаков, водяной знак фото, текстовый водяной знак, редактор изображений, бесплатный водяной знак',
         'mainHeading': 'Инструмент Водяных Знаков',
         'selectImage': 'Выберите изображение для добавления водяного знака',
         'uploadPrompt': 'Загрузите изображение для добавления водяного знака',
@@ -214,7 +228,9 @@ const translations = {
     },
     // Arabic
     'ar': {
-        'pageTitle': 'أداة العلامة المائية للصور',
+        'pageTitle': 'أداة العلامة المائية للصور - أضف علامات مائية نصية إلى صورك',
+        'pageDescription': 'أداة مجانية عبر الإنترنت لإضافة علامات مائية نصية إلى صورك. قم بتخصيص موضع وحجم ولون وشفافية ودوران العلامة المائية الخاصة بك.',
+        'pageKeywords': 'علامة مائية للصور، أداة العلامة المائية، علامة مائية للصور، علامة مائية نصية، محرر الصور، علامة مائية مجانية',
         'mainHeading': 'أداة العلامة المائية للصور',
         'selectImage': 'حدد صورة لإضافة علامة مائية',
         'uploadPrompt': 'قم بتحميل صورة لإضافة علامة مائية',
@@ -244,7 +260,9 @@ const translations = {
     },
     // Simplified Chinese
     'zh-CN': {
-        'pageTitle': '图片水印工具',
+        'pageTitle': '图片水印工具 - 为您的图片添加文字水印',
+        'pageDescription': '免费在线工具，为您的图片添加文字水印。自定义水印的位置、大小、颜色、透明度和旋转角度。',
+        'pageKeywords': '图片水印, 水印工具, 照片水印, 文字水印, 图片编辑器, 免费水印',
         'mainHeading': '图片水印工具',
         'selectImage': '选择图片或拖放至此',
         'uploadPrompt': '点击上传或拖放图片至此',
@@ -274,7 +292,9 @@ const translations = {
     },
     // Traditional Chinese
     'zh-TW': {
-        'pageTitle': '圖片浮水印工具',
+        'pageTitle': '圖片浮水印工具 - 為您的圖片添加文字浮水印',
+        'pageDescription': '免費在線工具，為您的圖片添加文字浮水印。自定義浮水印的位置、大小、顏色、透明度和旋轉角度。',
+        'pageKeywords': '圖片浮水印, 浮水印工具, 照片浮水印, 文字浮水印, 圖片編輯器, 免費浮水印',
         'mainHeading': '圖片浮水印工具',
         'selectImage': '選擇一張圖片添加浮水印',
         'uploadPrompt': '上傳圖片添加浮水印',
@@ -304,7 +324,9 @@ const translations = {
     },
     // Korean
     'ko': {
-        'pageTitle': '이미지 워터마크 도구',
+        'pageTitle': '이미지 워터마크 도구 - 이미지에 텍스트 워터마크 추가',
+        'pageDescription': '이미지에 텍스트 워터마크를 추가하는 무료 온라인 도구. 워터마크의 위치, 크기, 색상, 투명도 및 회전을 사용자 정의할 수 있습니다.',
+        'pageKeywords': '이미지 워터마크, 워터마크 도구, 사진 워터마크, 텍스트 워터마크, 이미지 편집기, 무료 워터마크',
         'mainHeading': '이미지 워터마크 도구',
         'selectImage': '워터마크를 추가할 이미지 선택',
         'uploadPrompt': '워터마크를 추가할 이미지 업로드',
@@ -394,6 +416,11 @@ function setLanguage(langCode) {
         // Update canvas text when language changes
         if (typeof updateCanvasText === 'function') {
             updateCanvasText();
+        }
+
+        // Update meta tags for SEO when language changes
+        if (typeof updateMetaTags === 'function') {
+            updateMetaTags();
         }
 
         return true;
@@ -534,6 +561,11 @@ function createLanguageSelector() {
 function initLanguageSupport() {
     createLanguageSelector();
     applyTranslations();
+
+    // Update meta tags for SEO on initial load
+    if (typeof updateMetaTags === 'function') {
+        updateMetaTags();
+    }
 }
 
 // Call initLanguageSupport when the DOM is loaded

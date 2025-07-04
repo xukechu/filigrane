@@ -1,72 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Watermark Tool</title>
+    <!-- Primary meta description (English) -->
+    <meta name="description" content="Free online tool to add text watermarks to your images. Customize position, size, color, opacity, and rotation of your watermark.">
+    <meta name="keywords" content="image watermark, watermark tool, photo watermark, text watermark, image editor, free watermark">
+    <meta name="author" content="Image Watermark Tool">
+    <meta name="robots" content="index, follow">
+
+    <!-- Alternate language meta descriptions -->
+    <meta name="description" lang="fr" content="Outil en ligne gratuit pour ajouter des filigranes textuels à vos images. Personnalisez la position, la taille, la couleur, l'opacité et la rotation de votre filigrane.">
+    <meta name="description" lang="de" content="Kostenloses Online-Tool zum Hinzufügen von Textwasserzeichen zu Ihren Bildern. Passen Sie Position, Größe, Farbe, Deckkraft und Drehung Ihres Wasserzeichens an.">
+    <meta name="description" lang="it" content="Strumento online gratuito per aggiungere filigrane di testo alle tue immagini. Personalizza posizione, dimensione, colore, opacità e rotazione della tua filigrana.">
+    <meta name="description" lang="es" content="Herramienta en línea gratuita para añadir marcas de agua de texto a tus imágenes. Personaliza la posición, tamaño, color, opacidad y rotación de tu marca de agua.">
+    <meta name="description" lang="ja" content="画像にテキスト透かしを追加する無料オンラインツール。透かしの位置、サイズ、色、不透明度、回転をカスタマイズできます。">
+    <meta name="description" lang="ru" content="Бесплатный онлайн-инструмент для добавления текстовых водяных знаков на ваши изображения. Настройте положение, размер, цвет, прозрачность и поворот вашего водяного знака.">
+    <meta name="description" lang="ar" content="أداة مجانية عبر الإنترنت لإضافة علامات مائية نصية إلى صورك. قم بتخصيص موضع وحجم ولون وشفافية ودوران العلامة المائية الخاصة بك.">
+    <meta name="description" lang="zh-CN" content="免费在线工具，为您的图片添加文字水印。自定义水印的位置、大小、颜色、透明度和旋转角度。">
+    <meta name="description" lang="zh-TW" content="免費在線工具，為您的圖片添加文字浮水印。自定義浮水印的位置、大小、顏色、透明度和旋轉角度。">
+    <meta name="description" lang="ko" content="이미지에 텍스트 워터마크를 추가하는 무료 온라인 도구. 워터마크의 위치, 크기, 색상, 투명도 및 회전을 사용자 정의할 수 있습니다.">
+
+    <!-- Language alternates (hreflang tags) -->
+    <link rel="alternate" hreflang="en" href="https://example.com/en/">
+    <link rel="alternate" hreflang="fr" href="https://example.com/fr/">
+    <link rel="alternate" hreflang="de" href="https://example.com/de/">
+    <link rel="alternate" hreflang="it" href="https://example.com/it/">
+    <link rel="alternate" hreflang="es" href="https://example.com/es/">
+    <link rel="alternate" hreflang="ja" href="https://example.com/ja/">
+    <link rel="alternate" hreflang="ru" href="https://example.com/ru/">
+    <link rel="alternate" hreflang="ar" href="https://example.com/ar/">
+    <link rel="alternate" hreflang="zh-CN" href="https://example.com/zh-CN/">
+    <link rel="alternate" hreflang="zh-TW" href="https://example.com/zh-TW/">
+    <link rel="alternate" hreflang="ko" href="https://example.com/ko/">
+    <link rel="alternate" hreflang="x-default" href="https://example.com/">
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Image Watermark Tool - Add Text Watermarks to Your Images">
+    <meta property="og:description" content="Free online tool to add text watermarks to your images. Customize position, size, color, opacity, and rotation of your watermark.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://example.com/watermark-tool-preview.jpg">
+    <meta property="og:url" content="https://example.com">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="it_IT">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:locale:alternate" content="ar_SA">
+    <meta property="og:locale:alternate" content="zh_CN">
+    <meta property="og:locale:alternate" content="zh_TW">
+    <meta property="og:locale:alternate" content="ko_KR">
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Image Watermark Tool - Add Text Watermarks to Your Images">
+    <meta name="twitter:description" content="Free online tool to add text watermarks to your images. Customize position, size, color, opacity, and rotation of your watermark.">
+    <meta name="twitter:image" content="https://example.com/watermark-tool-preview.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://example.com">
+    <title>Image Watermark Tool - Add Text Watermarks to Your Images</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Image Watermark Tool</h1>
+        <header>
+            <h1>Image Watermark Tool</h1>
+        </header>
 
-        <div class="upload-section">
-            <div class="upload-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="17 8 12 3 7 8"></polyline>
-                    <line x1="12" y1="3" x2="12" y2="15"></line>
-                </svg>
-            </div>
-            <p>Select an image to add a watermark</p>
-            <input type="file" id="imageInput" accept="image/*" class="file-input">
-        </div>
-
-        <div class="editor-container">
-            <div class="canvas-container">
-                <canvas id="imageCanvas"></canvas>
-                <div class="canvas-overlay">
-                    <button id="reuploadBtn" class="reupload-btn" style="display: none;">
-                        <span id="reuploadText">Re-upload</span>
-                    </button>
+        <main>
+            <section class="upload-section" aria-label="Upload Image Section">
+                <div class="upload-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
                 </div>
-            </div>
+                <p>Select an image to add a watermark</p>
+                <input type="file" id="imageInput" accept="image/*" class="file-input" aria-label="Upload image file">
+            </section>
 
-            <div class="controls">
-                <div class="control-group">
-                    <h3 id="watermarkTextTitle">Watermark Text</h3>
-                    <input type="text" id="watermarkText" placeholder="Enter watermark text" value="Watermark">
-                </div>
-
-                <div class="control-group">
-                    <h3 id="positionTitle">Position</h3>
-                    <div class="position-controls">
-                        <button id="posTopLeft">Top Left</button>
-                        <button id="posTopRight">Top Right</button>
-                        <button id="posCenter">Center</button>
-                        <button id="posBottomLeft">Bottom Left</button>
-                        <button id="posBottomRight">Bottom Right</button>
-                    </div>
-                    <div class="position-sliders">
-                        <label>X Offset: <input type="range" id="xOffset" min="-300" max="300" value="0"><span id="xOffsetValue">0</span></label>
-                        <label>Y Offset: <input type="range" id="yOffset" min="-300" max="300" value="0"><span id="yOffsetValue">0</span></label>
+            <section class="editor-container" aria-label="Image Editor">
+                <div class="canvas-container">
+                    <canvas id="imageCanvas" aria-label="Image preview with watermark"></canvas>
+                    <div class="canvas-overlay">
+                        <button id="reuploadBtn" class="reupload-btn" style="display: none;">
+                            <span id="reuploadText">Re-upload</span>
+                        </button>
                     </div>
                 </div>
 
-                <div class="control-group">
-                    <h3 id="appearanceTitle">Appearance</h3>
-                    <label id="fontSizeLabel">Font Size: <input type="range" id="fontSize" min="10" max="300" value="80"><span id="fontSizeValue">80px</span></label>
-                    <label id="opacityLabel">Opacity: <input type="range" id="opacity" min="0" max="100" value="50"><span id="opacityValue">50%</span></label>
-                    <label id="colorLabel">Color: <input type="color" id="textColor" value="#ffffff"></label>
-                    <label id="rotationLabel">Rotation: <input type="range" id="rotation" min="0" max="360" value="0"><span id="rotationValue">0°</span></label>
-                </div>
+                <aside class="controls">
+                    <div class="control-group">
+                        <h3 id="watermarkTextTitle">Watermark Text</h3>
+                        <input type="text" id="watermarkText" placeholder="Enter watermark text" value="Watermark" aria-labelledby="watermarkTextTitle">
+                    </div>
 
-                <div class="control-group">
-                    <button id="downloadBtn" disabled>Download Image</button>
-                </div>
-            </div>
-        </div>
+                    <div class="control-group">
+                        <h3 id="positionTitle">Position</h3>
+                        <div class="position-controls">
+                            <button id="posTopLeft" aria-label="Position watermark at top left">Top Left</button>
+                            <button id="posTopRight" aria-label="Position watermark at top right">Top Right</button>
+                            <button id="posCenter" aria-label="Position watermark at center">Center</button>
+                            <button id="posBottomLeft" aria-label="Position watermark at bottom left">Bottom Left</button>
+                            <button id="posBottomRight" aria-label="Position watermark at bottom right">Bottom Right</button>
+                        </div>
+                        <div class="position-sliders">
+                            <label>X Offset: <input type="range" id="xOffset" min="-300" max="300" value="0" aria-label="Horizontal offset"><span id="xOffsetValue">0</span></label>
+                            <label>Y Offset: <input type="range" id="yOffset" min="-300" max="300" value="0" aria-label="Vertical offset"><span id="yOffsetValue">0</span></label>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h3 id="appearanceTitle">Appearance</h3>
+                        <label id="fontSizeLabel">Font Size: <input type="range" id="fontSize" min="10" max="300" value="80" aria-labelledby="fontSizeLabel"><span id="fontSizeValue">80px</span></label>
+                        <label id="opacityLabel">Opacity: <input type="range" id="opacity" min="0" max="100" value="50" aria-labelledby="opacityLabel"><span id="opacityValue">50%</span></label>
+                        <label id="colorLabel">Color: <input type="color" id="textColor" value="#ffffff" aria-labelledby="colorLabel"></label>
+                        <label id="rotationLabel">Rotation: <input type="range" id="rotation" min="0" max="360" value="0" aria-labelledby="rotationLabel"><span id="rotationValue">0°</span></label>
+                    </div>
+
+                    <div class="control-group">
+                        <button id="downloadBtn" disabled aria-label="Download watermarked image">Download Image</button>
+                    </div>
+                </aside>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Image Watermark Tool. All rights reserved.</p>
+        </footer>
     </div>
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image Watermark Tool",
+        "description": "Free online tool to add text watermarks to your images. Customize position, size, color, opacity, and rotation of your watermark.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Add text watermarks to images",
+            "Customize watermark position",
+            "Adjust font size, color, opacity, and rotation",
+            "Download watermarked images",
+            "Free to use"
+        ],
+        "inLanguage": [
+            "en", "fr", "de", "it", "es", "ja", "ru", "ar", "zh-CN", "zh-TW", "ko"
+        ],
+        "alternateName": [
+            {
+                "@language": "fr",
+                "@value": "Outil de Filigrane d'Image"
+            },
+            {
+                "@language": "de",
+                "@value": "Bild-Wasserzeichen-Tool"
+            },
+            {
+                "@language": "it",
+                "@value": "Strumento Filigrana Immagine"
+            },
+            {
+                "@language": "es",
+                "@value": "Herramienta de Marca de Agua de Imagen"
+            },
+            {
+                "@language": "ja",
+                "@value": "画像透かしツール"
+            },
+            {
+                "@language": "ru",
+                "@value": "Инструмент Водяных Знаков"
+            },
+            {
+                "@language": "ar",
+                "@value": "أداة العلامة المائية للصور"
+            },
+            {
+                "@language": "zh-CN",
+                "@value": "图片水印工具"
+            },
+            {
+                "@language": "zh-TW",
+                "@value": "圖片浮水印工具"
+            },
+            {
+                "@language": "ko",
+                "@value": "이미지 워터마크 도구"
+            }
+        ]
+    }
+    </script>
 
     <script src="translations.js"></script>
     <script src="script.js"></script>
