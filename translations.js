@@ -390,6 +390,12 @@ function setLanguage(langCode) {
     if (translations[langCode]) {
         localStorage.setItem('preferredLanguage', langCode);
         applyTranslations();
+
+        // Update canvas text when language changes
+        if (typeof updateCanvasText === 'function') {
+            updateCanvasText();
+        }
+
         return true;
     }
     return false;
